@@ -4,24 +4,28 @@
 
 This tool focuses on editing Android boot.img(also recovery.img, recovery-two-step.img and vbmeta.img).
 
-## Prerequisite
-#### Host OS requirement:
+## 1. Prerequisite
+#### 1.1 Host OS requirement:
 
 Linux or Mac.
 Also need python 2.x(required by avbtool) and java 8.
 
-#### Target Android requirement:
+#### 1.2 Target Android requirement:
 
-(1) Target boot.img(or recovery.img / recovery-two-step.img) MUST follows AOSP verified boot flow, either [Boot image signature](https://source.android.com/security/verifiedboot/verified-boot#signature_format) in VBoot 1.0 or [AVB HASH footer](https://android.googlesource.com/platform/external/avb/+/master/README.md#The-VBMeta-struct) in VBoot 2.0.
+(1) Target boot.img MUST follows AOSP verified boot flow, either [Boot image signature](https://source.android.com/security/verifiedboot/verified-boot#signature_format) in VBoot 1.0 or [AVB HASH footer](https://android.googlesource.com/platform/external/avb/+/master/README.md#The-VBMeta-struct) in VBoot 2.0.
 
-(2) These utilities are known to work for Nexus/Pixel boot.img(or recovery.img/recovery-two-step.img/vbmeta.img) for the following Android releases:
+Supported images:
+ - boot.img
+ - recovery.img
+ - recovery-two-step.img
+ - vbmeta.img
+
+(2) These utilities are known to work for Nexus/Pixel boot.img for the following Android releases:
 
  - AOSP master
  - Lollipop (5.0) - Pi (9)
 
-You can get a full [Android version list](https://source.android.com/source/build-numbers.html) here.
-
-## Usage
+## 2. Usage
 Get tools via git:
 
     git clone https://github.com/cfig/Android_boot_image_editor.git
@@ -60,14 +64,22 @@ If you are working with recovery.img, the steps are similar:
 And you get recovery.img.signed
 
 
-## example & test
+## 3. example & test
 An example boot.img has been placed at **src/test/resources/boot.img**, which is extracted from Nexus 5x(code: bullhead) factory images from [Google](https://dl.google.com/dl/android/aosp/bullhead-mda89e-factory-29247942.tgz), you can take it as a quick start.
 
-## boot.img layout
+## 4. boot.img layout
 Read [layout](README.expert.md) of Android boot.img.
 We now support both VB 1.0 and AVB 2.0 layouts.
 
-## References
+## 5. compatible devices
+
+| Device Model                   | Manufacturer | Compatible           | Android Version          | Note |
+|--------------------------------|--------------|----------------------|--------------------------|------|
+| Nexus 9 (volantis)             | HTC          | Y(with some tricks) | 7.1.1 (N9F27M, Oct 2017) | [tricks](doc/additional_tricks.md#tricks-for-nexus-9volantis)|
+| Nexus 5x (bullhead)            | LG           | Y                    | 6.0.0_r12 (MDA89E)       |      |
+| Moto X (2013) T-Mobile        | Motorola     | N                    |                          |      |
+
+## 6. References
 
 boot\_signer
 https://android.googlesource.com/platform/system/extras
@@ -80,3 +92,6 @@ https://android.googlesource.com/platform/system/core
 
 AVB
 https://android.googlesource.com/platform/external/avb/
+
+Android version list
+https://source.android.com/source/build-numbers.html
